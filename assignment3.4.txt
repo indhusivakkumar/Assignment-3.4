@@ -1,0 +1,86 @@
+1.HDFS FEDERATION
+
+HDFS Federation:
+
+                        *HDFS federation improves the existing HDFS architecture through  clear seperation of namespace 
+                          and storage.
+                        *It enables generic block storage layer.
+                        *In HDFS Federation, there are multiple Namenodes.
+                        *It improves scalability and isolation by supporting multiple namespaces.
+                        *Each node will store metadata and block mapping  of files and directories.
+                        *Each datanode registers with all the namenode in the cluster.
+                        *Blocks of files present in a Namespace is known as blockpool.
+                        *Horizontal scalability of name service is available in HDFS federation .
+                        *Namespace volume is the list of sub-directories managed by a Namenode.
+                        *NameNode is responsible for two tasks namely Namespace management and block management.
+                        *Advantages:
+                              The advantages of HDFS Federation are
+                                    *scalability
+                                    *Performance and 
+                                    *isolation
+                                    *Single view
+
+Hign Availability:
+
+                       * In hadoop 1.0 the name nodes have single point of failure(SPOF) problem which means that when a name
+                         node fails the cluster becomes out of way(ie) the clusters also fails.
+                       *Hadoop 2.0 overcomes SPOF problem by providing multiple name nodes.
+                       *This is referred as hadoop 2.0 hig availability.
+                       *The main purpose of high availability is to provide 24/7 availability to big data applications. 
+                       *Hadoop has 2 namenodes which provides high availabilty.One namenode helps for  active configuration
+                        while the other namenode helps for   for passive configuration.
+                       *It makes Data  safely protected in HDFS
+                       *The applications includes RAS features where RAS stands for  reliability,availability and serviceability.
+                       *Hence if a  name node fails  it is replaced with the secondary name node.
+                       *This eliminates name node as a potential  single point failure in ah HDFS cluster.
+                       Advantages:
+   
+                         *It provides extra backup RPCs for secondary region replicas
+                         *It automatically recovers failed nodes. 
+                         * It enables you to run redundant name nodes within the same cluster.
+                       
+
+
+2. How HDFS handles failures while writing data                       
+ *The blocks are replicated many times and stored on the data nodes in order to handle failure in HDFS write.
+ *The failed data nodes are removed from the pipeline and newpipelines are constructed from  two good data nodes.
+ *This process of replicating many times is known as replication factor 
+ *The replication factor  is used to determine the number of data  nodes on the pipeline.                     
+ *The pipeline is closed and the packets in the  ack queue are added to front of data
+ *The current nodes will be given new identity,which is used to communicate with the namenode.
+ *As long as dfs.namenode.replication.min replicas are written ,the write will succeed
+ *The remainder from the block's data is written into good data node in pipeline.
+ *The blocks will be replicated  asynchronously  across the cluster until the target replication factor is reached.
+
+ *HDFS consists of three recovery systems.They are:
+      -Pipeline recovery
+      -Block recovery
+      -Lease recovery
+
+PIPELINE RECOVERY
+   *In pipeline recovery the data written on sequential blocks and blocks are splitted into packets and submitted on
+    the data node.                
+
+BLOCK RECOVERY:
+   *In order to differentiate between blocks in the context of  NameNode and blocks in the context of  DataNode, 
+    we will refer to the former as blocks, and the latter as replicas.
+
+LEASE RECOVERY:
+   *The lease recovery process takes place in a nameNode to recover leases for a given client, either by the monitor
+    thread upon hard limit expiry, or when a client tries to take over lease from another client when  soft limit expires.
+          
+
+
+ 
+
+      
+
+
+             
+
+             
+
+         
+         
+
+              
